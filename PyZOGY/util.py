@@ -100,6 +100,7 @@ def join_images(science_raw, science_mask, reference_raw, reference_mask, sigma_
             logging.error('No pixels in common at this percentile ({0}); lower and try again'.format(percent))
     else:
         pixstack_limit = science.size // 20
+        pixstack_limit = pixstack_limit*20
         if pixstack_limit > 300000:
             sep.set_extract_pixstack(pixstack_limit)
         science_sources = sep.extract(np.ascontiguousarray(science.data), thresh=sigma_cut, err=science_std, mask=np.ascontiguousarray(science.mask))
